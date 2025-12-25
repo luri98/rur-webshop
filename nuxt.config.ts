@@ -11,4 +11,6 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+
+  modules: ['@formkit/auto-animate']
 })
