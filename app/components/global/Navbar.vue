@@ -1,28 +1,40 @@
 <template>
-    <div class="flex items-center h-16 px-4 bg-primary">
+    <nav class="relative flex items-center h-16 px-4 bg-primary">
         <div class="flex items-center justify-between w-full max-w-7xl mx-auto">
             <div class="lg:hidden flex items-center space-x-6 shrink-0">
-                <button class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white">
+                <!-- Drawer Button -->
+                <button @click="">
+                    <svg class="size-6 text-white hover:text-white/70 cursor-pointer" 
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                 </button>
+                <!-- Search -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
             </div>
-            <a href="/" class="shrink-0"><img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=black&amp;shade=600" alt="" class="h-8 w-auto"></a>
+            <!-- Logo -->
+            <a href="/" class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 lg:left-auto lg:top-auto lg:translate-x-0 lg:translate-y-0 lg:relative shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="yellow" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                </svg>
+            </a>
             <div class="hidden lg:flex w-full max-w-xs h-12 bg-white rounded-full">
 
             </div>
             <div class="flex items-center space-x-6">
-                <div class="hidden lg:flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white"   v-if="user">
+                <button class="cursor-pointer group"
+                    @click="openProfileMenu()"
+                    v-if="user">
+                    <svg class="size-6 text-white hover:text-white/70"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                     </svg>
-                    <nuxt-link to=""
-                        class="hidden lg:flex font-semibold text-white" v-else>Prijavi se</nuxt-link>
-                </div>
+                </button>
+                <nuxt-link to="/prijava"
+                    class="hidden lg:flex font-semibold text-white" v-else>Prijavi se</nuxt-link>
+                
                 <a href="/"
                     class="flex items-center space-x-2 group text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 group-hover:text-white/70">
@@ -32,19 +44,46 @@
                 </a>
             </div>
         </div>
-    </div>
+    </nav>
+    <transition 
+        enter-from-class="transform translate-x-full opacity-0 " 
+        enter-active-class="duration-300 ease-out"
+        enter-to-class="opacity-100" 
+        leave-from-class="opacity-100" 
+        leave-active-class="duration-300 ease-in"
+        leave-to-class="translate-x-full opacity-0">
+        <ProfileMenu 
+            :user="user"
+            v-click-outside="closeProfileMenu"
+            @close="closeProfileMenu"
+            v-if="isVisibleProfileMenu"/>
+    </transition>
 </template>
 
 <script>
     export default {
         data() {
             return {
+                isVisibleProfileMenu: false,
+
                 user: {
                     id: 1,
                     name: 'Luka Milaš',
                     email: 'lukamilas@blackdot.co.me',
                     phone: '+38267232445'
-                }
+                },
+
+                // user:null
+            }
+        },
+
+        methods: {
+            openProfileMenu() {
+                this.isVisibleProfileMenu = true
+            },
+
+            closeProfileMenu() {
+                this.isVisibleProfileMenu = false
             }
         },
     }
