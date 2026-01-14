@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed top-0 bottom-0 right-0 flex flex-col w-full sm:max-w-xs p-6 bg-white">
+    <div class="fixed top-0 bottom-0 right-0 flex flex-col w-full sm:max-w-xs p-6 bg-gray-50">
         <button class="ml-auto cursor-pointer hover:scale-110"
             @click="$emit('close')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
@@ -22,13 +22,13 @@
             <div class="flex items-center justify-center space-x-4 mt-4 ">
                 <nuxt-link to="/profil" 
                     class="flex items-center justify-center space-x-2 h-11 w-24 text-sm bg-primary hover:bg-primary/90 transition-all text-white rounded-lg cursor-pointer">
-                    <span>Profil</span>
+                    <span class="font-medium">Profil</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                 </nuxt-link>
                 <button class="flex items-center justify-center space-x-1.5 h-11 w-24 text-sm bg-gray-200 hover:bg-gray-300/70 transition-all rounded-lg cursor-pointer">
-                    <span>Odjava</span>
+                    <span class="font-medium">Odjava</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                     </svg>

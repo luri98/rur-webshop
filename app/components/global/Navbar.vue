@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between w-full max-w-7xl mx-auto">
             <div class="lg:hidden flex items-center space-x-6 shrink-0">
                 <!-- Drawer Button -->
-                <button @click="">
+                <button @click="openDrawerMenu()">
                     <svg class="size-6 text-white hover:text-white/70 cursor-pointer" 
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -16,7 +16,7 @@
             </div>
             <!-- Logo -->
             <a href="/" class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 lg:left-auto lg:top-auto lg:translate-x-0 lg:translate-y-0 lg:relative shrink-0">
-                <div class="flex items-center justify-center p-1 bg-white rounded-full ring-2 ring-black">
+                <div class="flex items-center justify-center p-1 bg-gray-50 rounded-full ring-2 ring-gray-900">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="yellow" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
                     </svg>
@@ -50,7 +50,7 @@
         </div>
     </nav>
     <transition 
-        enter-from-class="transform translate-x-full opacity-0 " 
+        enter-from-class="transform translate-x-full opacity-0" 
         enter-active-class="duration-300 ease-out"
         enter-to-class="opacity-100" 
         leave-from-class="opacity-100" 
@@ -62,6 +62,18 @@
             @close="closeProfileMenu"
             v-if="isVisibleProfileMenu"/>
     </transition>
+    <transition 
+        enter-from-class="transform -translate-x-full opacity-0" 
+        enter-active-class="duration-300 ease-out"
+        enter-to-class="opacity-100" 
+        leave-from-class="opacity-100" 
+        leave-active-class="duration-300 ease-in"
+        leave-to-class="-translate-x-full opacity-0">
+        <NavbarMenu class="lg:hidden"
+            v-click-outside="closeDrawerMenu"
+            @close="closeDrawerMenu"
+            v-if="isVisibleDrawerMenu"/>
+    </transition>
 </template>
 
 <script>
@@ -69,6 +81,7 @@
         data() {
             return {
                 isVisibleProfileMenu: false,
+                isVisibleDrawerMenu: false,
 
                 user: {
                     id: 1,
@@ -88,6 +101,14 @@
 
             closeProfileMenu() {
                 this.isVisibleProfileMenu = false
+            },
+
+            openDrawerMenu() {
+                this.isVisibleDrawerMenu = true
+            },
+
+            closeDrawerMenu() {
+                this.isVisibleDrawerMenu = false
             }
         },
     }
