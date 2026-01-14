@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed top-0 bottom-0 right-0 flex flex-col w-full sm:max-w-xs p-6 bg-gray-50">
+    <div class="fixed top-0 bottom-0 right-0 z-50 flex flex-col w-full sm:max-w-xs p-6 bg-gray-50">
         <button class="ml-auto cursor-pointer hover:scale-110"
             @click="$emit('close')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
@@ -8,7 +8,7 @@
         </button>
         <div class="flex flex-col space-y-2 mt-2" v-if="user">
             <div class="flex flex-col items-center space-y-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-20" v-if="user">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-16" v-if="user">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
                 <span class="text-lg font-bold text-center">{{ user.name }}</span>
