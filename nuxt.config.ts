@@ -18,7 +18,19 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ['@formkit/auto-animate', 'nuxt-auth-sanctum'],
+  modules: [
+    '@formkit/auto-animate',
+    'nuxt-auth-sanctum',
+    '@nuxtjs/google-fonts'
+  ],
+
+  googleFonts: {
+    families: {
+      Poppins: [400, 500, 600, 700],
+    },
+    preload: true
+  },
+
   sanctum: {
     appendPlugin: true,
     baseUrl: process.env.API_BASE_URL,
