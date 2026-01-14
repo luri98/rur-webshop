@@ -43,10 +43,12 @@
                 placeholder="Pretraži..."/>
 
             <div class="flex items-center space-x-6 ml-auto">
-                <button class="cursor-pointer group"
-                    @click="openProfileMenu()"
+                <button
+                    id="profile_button" 
+                    class="cursor-pointer group"
+                    @click="toggleProfileMenu()"
                     v-if="user">
-                    <svg class="size-6 text-white hover:text-white/70"
+                    <svg class="size-6 text-white hover:text-white/70 pointer-events-none"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                     </svg>
@@ -75,7 +77,7 @@
             :user="user"
             v-click-outside="closeProfileMenu"
             @close="closeProfileMenu"
-            v-if="isVisibleProfileMenu"/>
+            v-show="isVisibleProfileMenu"/>
     </transition>
     <transition 
         enter-from-class="transform -translate-x-full opacity-0" 
@@ -110,19 +112,25 @@
         },
 
         methods: {
-            openProfileMenu() {
-                this.isVisibleProfileMenu = true
+            toggleProfileMenu() {
+                this.isVisibleProfileMenu = !this.isVisibleProfileMenu
             },
 
             closeProfileMenu() {
+                const clicked_id = event.target.id
+                const id = 'profile_button'
+                
+                if(clicked_id == id)
+                    return
+                            
                 this.isVisibleProfileMenu = false
             },
 
             openDrawerMenu() {
-                this.isVisibleDrawerMenu = true
+                this.isVisibleDrawerMenu = !this.isVisibleDrawerMenu
             },
 
-            closeDrawerMenu() {
+            closeDrawerMenu(event) {
                 this.isVisibleDrawerMenu = false
             }
         },
